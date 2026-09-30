@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wa-CRM Intelligence</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">WA-CRM Intelligence</div>
+    <div id="status-indicator" class="status idle">
+      <span class="dot"></span>
+      <span class="status-text">Consent has not been requested</span>
+    </div>
+  </div>
+
+  <div id="main-content" class="content">
+
+    <div id="contact-info" class="card hidden" style="margin-bottom: 16px;">
+      <h2 id="contact-name" style="margin: 0; font-size: 16px; color: #17213C;">Loading...</h2>
+    </div>
+
+    <div id="state-idle" class="state-panel hidden">
+      <button id="btn-request-consent" class="primary-btn">Request Chat Consent</button>
+    </div>
+
+    <div id="state-confirming" class="state-panel hidden">
+      <h3>Send consent request?</h3>
+      <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 12px;">
+        Wa-CRM will send a consent message to the currently selected customer. No previous chat messages will be accessed until the customer replies YES.
+      </p>
+      <div class="actions">
+        <button id="btn-cancel-confirm" class="secondary-btn">Cancel</button>
+        <button id="btn-send-request" class="primary-btn">Send Request</button>
+      </div>
+    </div>
+
+    <div id="state-waiting" class="state-panel hidden">
+      <p style="font-weight: 500;">Waiting for customer consent...</p>
+      <p class="meta" id="request-time" style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 12px;"></p>
+      <button id="btn-cancel-request" class="secondary-btn">Cancel Request</button>
+    </div>
+
+    <div id="state-approved" class="state-panel hidden">
+      <p style="font-weight: 600; color: #10B981; margin-bottom: 8px;">✓ Customer approved chat analysis</p>
+      <div class="spinner" style="margin: 10px auto; border-top-color: #10B981;"></div>
+      <p style="font-size: 13px;">Reading approved conversation...</p>
+    </div>
+
+    <div id="state-declined" class="state-panel hidden">
+      <p style="font-weight: 600; color: #EF4444; margin-bottom: 12px;">❌ Customer declined chat analysis</p>
+      <button id="btn-close-declined" class="secondary-btn">Close</button>
+    </div>
+
+    <div id="state-expired" class="state-panel hidden">
+      <p style="font-weight: 600; color: #6B7280; margin-bottom: 12px;">⏱ Consent request expired</p>
+      <button id="btn-request-again" class="primary-btn">Request Again</button>
+    </div>
+
+    <div id="state-error" class="state-panel hidden">
+      <p id="error-message" style="color: #EF4444; font-size: 13px; margin-bottom: 12px;"></p>
+      <button id="btn-error-reset" class="secondary-btn">Reset</button>
+    </div>
+  </div>
+
+  <div id="result-container" class="result hidden">
+    <div class="result-header">
+      <div class="score-container">
+        <div class="score-circle">
+          <span id="res-score">--</span>
+        </div>
+      </div>
+      <div class="result-title">
+        <h3 id="res-name">Contact Name</h3>
+        <span id="res-category" class="badge">At Risk</span>
+      </div>
+    </div>
+    
+    <div class="result-body">
+       <p class="summary" id="res-summary">Summary goes here.</p>
+       <div class="grid-stats">
+          <div class="stat-box">
+             <label>Intent</label>
+             <span id="res-intent">--</span>
+          </div>
+          <div class="stat-box">
+             <label>Sentiment</label>
+             <span id="res-sentiment">--</span>
+          </div>
+          <div class="stat-box">
+             <label>Follow-up</label>
+             <span id="res-followup">--</span>
+          </div>
+       </div>
+       <div class="action-box">
+          <label>Recommended Action</label>
+          <p id="res-action">Action goes here.</p>
+       </div>
+       <div class="reply-box">
+          <label>Suggested Reply</label>
+          <p id="res-reply">Reply goes here.</p>
+       </div>
+    </div>
+    <button id="back-btn" class="secondary-btn">Analyze Again</button>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

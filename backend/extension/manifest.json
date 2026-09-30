@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Wa-CRM Intelligence",
+  "version": "1.0.0",
+  "description": "Capture and analyze WhatsApp sales conversations.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
+    "http://localhost:5050/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["selectors.js", "content.js"]
+    }
+  ]
+}
